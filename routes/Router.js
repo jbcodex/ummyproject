@@ -7,6 +7,6 @@ router.get('/', (req, res)=>{
     res.send('API is Running')
 })
 
-module.exports = router
+module.exports = router 
 
 
