@@ -15,6 +15,5 @@ const register = async(req, res)=>{
 }
 
 module.exports = {
-    register,
-    posting
+    register
 }
