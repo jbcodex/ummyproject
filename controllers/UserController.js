@@ -29,9 +29,9 @@ const register = async (req, res) => {
             password: passwordhash
         })
 
-        if(!newUser){
+        if (!newUser) {
             res.status(422).json({
-                errors:['Houve um erro! Tente mais tarde!']
+                errors: ['Houve um erro! Tente mais tarde!']
             })
         }
 
@@ -47,8 +47,29 @@ const register = async (req, res) => {
     }
 }
 
-const login =(req, res)=>{
-    res.send('Login page')
+const login = async (req, res) => {
+    const { email, password } = req.body
+    const user = await User.findOne({ email })
+
+    if (!user) {
+        res.status(422).json({
+            errors: ['Dados incorretos!']
+        })
+    }
+
+    if (!(await bcrypt.compare(password, user.password))) {
+        res.status(422).json({
+            errors: ['Dados incorretos!']
+        })
+    }
+
+    token = generationToken(user._id)
+    res.status(201).json({
+        _id: user._id,
+        token: token
+    })
+
+
 
 }
 
