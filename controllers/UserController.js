@@ -63,7 +63,7 @@ const login = async (req, res) => {
         })
     }
 
-    token = generationToken(user._id)
+    const token = generationToken(user._id)
     res.status(201).json({
         _id: user._id,
         token: token
