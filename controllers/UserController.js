@@ -106,6 +106,8 @@ const update = async(req,res) => {
         user.bio = bio
     }
 
+    await user.save()
+
     res.status(200).json(user)
     } catch (error) {
         console.log(error)
